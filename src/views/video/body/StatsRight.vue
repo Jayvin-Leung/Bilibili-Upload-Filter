@@ -30,6 +30,8 @@ const isYesterday = (timestamp) => {
 
 const convert = (time) => {
   const diff = Math.floor(Date.now() / 1000) - time;
+  if (diff <= 60) return diff + '秒前';
+  if (diff <= 60 * 60) return Math.floor(diff / 60) + '分钟前';
   if (diff <= 24 * 60 * 60) return Math.floor(diff / (60 * 60)) + '小时前';
   if (isYesterday(time * 1000)) return '昨天';
   return new Date().getFullYear() === new Date(time * 1000).getFullYear()
